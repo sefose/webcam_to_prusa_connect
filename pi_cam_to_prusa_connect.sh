@@ -1,3 +1,5 @@
+#!/bin/bash
+
 PRUSA_URL=https://webcam.connect.prusa3d.com/c/snapshot
 CAMERA_NAMES=("cam1" "cam2")
 CAMERA_DEVICES=("/dev/video0" "/dev/video2")
