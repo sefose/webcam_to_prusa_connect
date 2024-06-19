@@ -12,3 +12,8 @@ ExecStart=${SCRIPT_DIR}/script.sh
 [Install]
 WantedBy=multi-user.target
 EOL
+
+systemctl daemon-reload
+
+sudo systemctl enable camtoprusaconnect.service 
+sudo systemctl start camtoprusaconnect.service 
