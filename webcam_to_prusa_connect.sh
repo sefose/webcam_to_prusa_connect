@@ -1,13 +1,11 @@
 #!/bin/bash
 
 PRUSA_URL=https://webcam.connect.prusa3d.com/c/snapshot
-CAMERA_NAMES=("cam1" "cam2")
-CAMERA_DEVICES=("/dev/video0" "/dev/video2")
-CAMERA_RESOLUTIONS=("1920x1080" "1920x1080")
-TOKENS=("XXXXX" "XXXXX")
 FRAME_CAPTURE_DELAY=${FRAME_CAPTURE_DELAY:-1}
 CAMERA_CYCLE_DELAY=${CAMERA_CYCLE_DELAY:-10}
 CONNECTION_TIMEOUT_DELAY=${CONNECTION_TIMEOUT_DELAY:-5}
+
+source ./settings.conf || exit 1 "settings.conf not found!"
 
 FINGERPRINTS=()
 for i in $(seq 1 ${#CAMERA_NAMES[@]}); do
@@ -27,7 +25,8 @@ while true; do
         echo "Fingerprint: ${FINGERPRINTS[$i]}"
         echo "------"
         fswebcam --device ${CAMERA_DEVICES[$i]} \
-            --resolution ${CAMERA_RESOLUTIONS[$i]} - | \
+            --resolution ${CAMERA_RESOLUTIONS[$i]} \
+            ${CAMERA_OPTIONS[$i]} - | \
         curl -X PUT "$PRUSA_URL" \
             -H "accept: */*" \
             -H "content-type: image/jpg" \
