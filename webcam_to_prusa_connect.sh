@@ -5,7 +5,7 @@ FRAME_CAPTURE_DELAY=${FRAME_CAPTURE_DELAY:-1}
 CAMERA_CYCLE_DELAY=${CAMERA_CYCLE_DELAY:-10}
 CONNECTION_TIMEOUT_DELAY=${CONNECTION_TIMEOUT_DELAY:-5}
 
-source ./settings.conf || exit 1 "settings.conf not found!"
+source ./settings.conf || exit 1
 
 FINGERPRINTS=()
 for i in $(seq 1 ${#CAMERA_NAMES[@]}); do
