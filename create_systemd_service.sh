@@ -7,7 +7,7 @@ cat >/lib/systemd/system/camtoprusaconnect.service  <<EOL
 Description=Uploads screenshots from cameras to prusa connect 
 
 [Service]
-ExecStart=${SCRIPT_DIR}/script.sh
+ExecStart=${SCRIPT_DIR}/webcam_to_prusa_connect.sh
 
 [Install]
 WantedBy=multi-user.target
