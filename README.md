@@ -14,17 +14,18 @@ If not present install git for cloning this repository, fswebcam for getting the
     git clone https://github.com/sefose/webcam_to_prusa_connect.git
 
 
-### Configure script
+### Create settings.conf
 To edit the script you can use nano and close with ctrl + x and save your changes
 
     cd webcam_to_prusa_connect/
-    nano webcam_to_prusa_connect.sh
+    nano settings.conf
 
-The following section of the "webcam_to_prusa_connect.sh" script needs to be edited according to your setup. Each entry in each line corrosponds to one camera at the position in the entry. You can use one or multiple cameras.
+The following section needs to be added according to your setup. Each entry in each line corrosponds to one camera at the position in the entry. You can use one or multiple cameras.
 
     CAMERA_NAMES=("cam1" "cam2")
     CAMERA_DEVICES=("/dev/video0" "/dev/video2")
     CAMERA_RESOLUTIONS=("1920x1080" "1920x1080")
+    CAMERA_OPTIONS=("" "--flip v,h")
     TOKENS=("XXXXX" "XXXXX")
 
 #### CAMERA_NAMES
@@ -46,6 +47,9 @@ Take the first "/dev/*" entry for each camera.
 Source: https://askubuntu.com/questions/348838/how-to-check-available-webcams-from-the-command-line
 #### CAMERA_RESOLUTIONS
 Enter resolutions appropriate for your cameras.
+#### CAMERA_OPTIONS
+You can add extra options according to the manpage: https://manpages.debian.org/jessie/fswebcam/fswebcam.1
+The example flips the picture of the second camera horizontally and vertically
 #### TOKENS
 Go to the camera section of your printer in prusa connect and click "Add new another camera"
 This generates the needed Token.
